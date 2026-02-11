@@ -1,0 +1,225 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+/* Typography variables and utilities */
+:root {
+  --font-size-caption: 12px;
+  --font-weight-regular: 400;
+}
+
+.section-tag-color {
+  color: #003893;
+}
+
+.caption-text {
+  font-size: 12px;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+}
+.label-regular-text {
+  font-size: 14px;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+}
+.label-regular-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+
+.button-small-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+.button-large-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+
+.p-regular-text {
+  font-size: 16px;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+}
+.p-medium-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+.p-semi-bold-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+.h6-regular-text {
+  font-size: 20px;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+}
+.h6-medium-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+.h6-semi-bold-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+.h5-regular-text {
+  font-size: 24px;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+}
+.h5-medium-text {
+  font-size: 24px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+.h5-semi-bold-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+.h4-regular-text {
+  font-size: 32px;
+  font-weight: 400;
+  color: inherit;
+  font-family: inherit;
+}
+.h4-medium-text {
+  font-size: 32px;
+  font-weight: 500;
+  color: inherit;
+  font-family: inherit;
+}
+.h4-semi-bold-text {
+  font-size: 32px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+.h3-semi-bold-text {
+  font-size: 40px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+.h2-semi-bold-text {
+  font-size: 48px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+.h1-semi-bold-text {
+  font-size: 56px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+.d1-semi-bold-text {
+  font-size: 96px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+.d2-semi-bold-text {
+  font-size: 112px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+.heading-semi-bold-text {
+  font-size: 36px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+  line-height: normal;
+}
+.subheading-semi-bold-text {
+  font-size: 28px;
+  font-weight: 600;
+  color: inherit;
+  font-family: inherit;
+}
+
+/* Responsive utility for class-like Tailwind prefix usage (e.g. md:d2-semi-bold-text) */
+@media (min-width: 768px) {
+  .md\:d2-semi-bold-text {
+    font-size: 90px;
+    font-weight: 600;
+    color: inherit;
+    font-family: inherit;
+    line-height: normal;
+  }
+  .md\:h3-semi-bold-text {
+    font-size: 40px;
+    font-weight: 600;
+    color: inherit;
+    font-family: inherit;
+  }
+  .md\:p-regular-text {
+    font-size: 16px;
+    font-weight: 400;
+    color: inherit;
+    font-family: inherit;
+  }
+  .md\:button-large-text {
+    font-size: 20px;
+    font-weight: 500;
+    color: inherit;
+    font-family: inherit;
+  }
+  .md\:h2-semi-bold-text {
+    font-size: 48px;
+    font-weight: 600;
+    color: inherit;
+    font-family: inherit;
+  }
+}
