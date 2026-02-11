@@ -168,31 +168,53 @@ export default function About() {
           className="absolute inset-0 mx-6 rounded-4xl"
           style={{
             backgroundColor: "rgba(39, 39, 39, 0.5)",
+            zIndex: 1,
           }}
         ></div>
-        <div className="flex px-6 flex-col bg-cover bg-center bg-no-repeat justify-center items-center w-full h-[500px] md:h-[400px] rounded-4xl bg-[url('/images/landing/about-bottom-mobile.jpg')] md:bg-[url('/images/landing/about-bottom-desk.jpg')]">
-          <h2
-            style={{ color: "white" }}
-            className="md:h3-semi-bold-text h4-semi-bold-text md:h4-semi-bold-text mb-2 text-center relative z-10"
-          >
-            Ready to see how it works?
-          </h2>
-          <p
-            style={{ color: "white" }}
-            className="p-regular-text mb-5 leading-relaxed text-center relative z-10"
-          >
-            Join thousands of students and tutors already using Academic Help
-          </p>
-          <div className="text-white flex justify-center items-center flex-col md:flex-row gap-4 relative z-10">
-            <div className="w-fit">
-              <button className="mt-5 px-6 py-2 mb-5 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 w-fit">
-                Post a assignment
-              </button>
+        <div className="relative mt-20">
+          <div className="absolute inset-0 rounded-4xl" />
+          <div className="relative rounded-4xl overflow-hidden w-full">
+            {/* Backgrounds (mobile / desktop) */}
+            <div className="absolute inset-0">
+              <div
+                className="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat rounded-4xl"
+                style={{
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/landing/about-bottom-mobile.jpg)`,
+                }}
+              />
+              <div
+                className="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat rounded-4xl"
+                style={{
+                  backgroundImage: `url(${process.env.NEXT_PUBLIC_BASE_PATH || ""}/images/landing/about-bottom-desk.jpg)`,
+                }}
+              />
             </div>
-            <div className=" w-fit">
-              <button className="px-6 py-2.5 border-2 border-white font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300 w-fit">
-                Contact us
-              </button>
+            <div className="relative flex px-6 flex-col justify-center items-center w-full h-[500px] md:h-[400px] rounded-4xl">
+              <h2
+                style={{ color: "white" }}
+                className="md:h3-semi-bold-text h4-semi-bold-text md:h4-semi-bold-text mb-2 text-center relative z-10"
+              >
+                Ready to see how it works?
+              </h2>
+              <p
+                style={{ color: "white" }}
+                className="p-regular-text mb-5 leading-relaxed text-center relative z-10"
+              >
+                Join thousands of students and tutors already using Academic
+                Help
+              </p>
+              <div className="text-white flex justify-center items-center flex-col md:flex-row gap-4 relative z-10">
+                <div className="w-fit">
+                  <button className="mt-5 px-6 py-2 mb-5 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 w-fit">
+                    Post a assignment
+                  </button>
+                </div>
+                <div className=" w-fit">
+                  <button className="px-6 py-2.5 border-2 border-white font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300 w-fit">
+                    Contact us
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

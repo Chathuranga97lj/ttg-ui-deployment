@@ -1,11 +1,29 @@
 import { Globe, Users, ShieldCheck } from "@phosphor-icons/react";
 
 export default function HeroSection() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   return (
     <section
       id="home"
-      className="relative h-[80vh] md:h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center z-0 bg-[url('/background/landing-cover-mobile.jpg')] md:bg-[url('/background/landing-cover.webp')]"
+      className="relative h-[80vh] md:h-screen w-full flex flex-col justify-center z-0"
     >
+      {/* Background images (mobile and desktop) */}
+      <div className="absolute inset-0">
+        <div
+          className="absolute inset-0 block md:hidden bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${basePath}/background/landing-cover-mobile.jpg)`,
+          }}
+        />
+        <div
+          className="absolute inset-0 hidden md:block bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${basePath}/background/landing-cover.webp)`,
+          }}
+        />
+      </div>
+
       {/* Overlay for better text readability */}
       <div
         className="absolute inset-0"
