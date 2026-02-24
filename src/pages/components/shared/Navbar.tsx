@@ -70,7 +70,10 @@ export default function Navbar() {
 
               {/* CTA Button */}
               <div className="flex space-x-4">
-                <button className="button-small-text bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+                <button
+                  onClick={() => router.push("/public/Login")}
+                  className="button-small-text bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+                >
                   Sign in
                 </button>
               </div>
@@ -138,7 +141,10 @@ export default function Navbar() {
               color: "white",
             }}
             className="px-6 py-2 w-full bg-blue-600 hover:bg-blue-700 button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105"
-            onClick={() => setIsOpen(false)}
+            onClick={() => {
+              setIsOpen(false);
+              router.push("/public/Login");
+            }}
           >
             Sign in
           </button>
