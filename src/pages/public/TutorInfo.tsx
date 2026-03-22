@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "../../../public/images/logo/main-logo.webp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   UserIcon,
   MapPinIcon,
@@ -18,6 +18,7 @@ import { education } from "@/enum/education";
 import { TUTORING_AREAS } from "@/enum/tutoring_areas";
 
 export default function TutorInfo() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -58,7 +59,12 @@ export default function TutorInfo() {
   }
   return (
     <div className="flex">
-      <div className="w-1/2 bg-cover bg-center bg-no-repeat bg-[url('/images/login/tutor.webp')] hidden md:block"></div>
+      <div
+        className="w-1/2 bg-cover bg-center bg-no-repeat hidden md:block"
+        style={{
+          backgroundImage: `url('${basePath}/images/login/tutor.webp')`,
+        }}
+      ></div>
       <div className="w-full md:w-1/2 p-5 align-middle flex items-center justify-center  bg-[#EEF4FF]">
         <div className="flex flex-col items-center justify-center w-full">
           {step !== 6 && (

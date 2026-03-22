@@ -14,6 +14,7 @@ import Popup from "../../components/shared/Popup";
 import { useRouter } from "next/router";
 
 export default function Login() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isRegister, setIsRegister] = useState<boolean>(false);
@@ -153,7 +154,12 @@ export default function Login() {
 
   return (
     <div className="flex md:h-screen">
-      <div className="w-1/2 bg-cover bg-center bg-no-repeat bg-[url('/images/login/student.webp')] hidden md:block"></div>
+      <div
+        className="w-1/2 bg-cover bg-center bg-no-repeat hidden md:block"
+        style={{
+          backgroundImage: `url('${basePath}/images/login/student.webp')`,
+        }}
+      ></div>
       <div className="w-full md:w-1/2 pt-25 p-5 align-middle flex items-center justify-center  bg-[#EEF4FF]">
         <div className="flex flex-col items-center justify-center w-full">
           <Image src={logo} alt="Main Logo" height={100} width={100} />

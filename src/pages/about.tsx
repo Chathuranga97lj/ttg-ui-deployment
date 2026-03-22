@@ -9,6 +9,7 @@ import step4Img from "../../public/images/landing/how_it_works_assignment_done.w
 import { useEffect, useState } from "react";
 
 export default function About() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const [isMobile, setIsMobile] = useState(false);
   const steps = [
     {
@@ -170,7 +171,12 @@ export default function About() {
             backgroundColor: "rgba(39, 39, 39, 0.5)",
           }}
         ></div>
-        <div className="flex px-6 flex-col bg-cover bg-center bg-no-repeat justify-center items-center w-full h-[500px] md:h-[400px] rounded-4xl bg-[url('/images/landing/about-bottom-mobile.jpg')] md:bg-[url('/images/landing/about-bottom-desk.jpg')]">
+        <div
+          className="flex px-6 flex-col bg-cover bg-center bg-no-repeat justify-center items-center w-full h-[500px] md:h-[400px] rounded-4xl"
+          style={{
+            backgroundImage: `url('${basePath}/images/landing/${isMobile ? "about-bottom-mobile.jpg" : "about-bottom-desk.jpg"}')`,
+          }}
+        >
           <h2
             style={{ color: "white" }}
             className="md:h3-semi-bold-text h4-semi-bold-text md:h4-semi-bold-text mb-2 text-center relative z-10"
