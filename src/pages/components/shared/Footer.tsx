@@ -9,7 +9,7 @@ export default function Footer() {
     { name: "Home", href: "/" },
     { name: "About us", href: "/about" },
     { name: "Contact us", href: "/contact" },
-    { name: "Become a tutor", href: "/tutor" },
+    { name: "Become a tutor", href: "/public/TutorReg" },
   ];
 
   const resources = [

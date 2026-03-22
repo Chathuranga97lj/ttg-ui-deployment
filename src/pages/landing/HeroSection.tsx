@@ -1,10 +1,34 @@
 import { Globe, Users, ShieldCheck } from "@phosphor-icons/react";
+import { useState, useEffect } from "react";
 
 export default function HeroSection() {
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const [isMobile, setIsMobile] = useState(true);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const bgImage = isMobile
+    ? `${basePath}/background/landing-cover-mobile.jpg`
+    : `${basePath}/background/landing-cover.webp`;
+
   return (
     <section
       id="home"
-      className="relative h-[80vh] md:h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center z-0 bg-[url('/background/landing-cover-mobile.jpg')] md:bg-[url('/background/landing-cover.webp')]"
+      className="relative h-[80vh] md:h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center z-0"
+      style={{
+        backgroundImage: `url('${bgImage}')`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
     >
       {/* Overlay for better text readability */}
       <div
