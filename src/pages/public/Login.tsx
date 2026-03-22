@@ -1,5 +1,7 @@
 import Image from "next/image";
 import logo from "../../../public/images/logo/main-logo.webp";
+import studentRoleImg from "../../../public/images/login/student_role.jpg";
+import tutorRoleImg from "../../../public/images/login/tutor_role.jpg";
 import { GoogleLogoIcon } from "@phosphor-icons/react";
 import {
   EnvelopeIcon,
@@ -8,17 +10,33 @@ import {
   ExclamationMarkIcon,
 } from "@phosphor-icons/react";
 import { useState, useEffect, useRef } from "react";
+import Popup from "../../components/shared/Popup";
+import { useRouter } from "next/router";
 
 export default function Login() {
+  const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [isRegister, setIsRegister] = useState<boolean>(false);
   const [isForgetPassword, setIsForgetPassword] = useState<boolean>(false);
   const [isOtpScreen, setIsOtpScreen] = useState<boolean>(false);
   const [isNewPasswordScreen, setIsNewPasswordScreen] =
     useState<boolean>(false);
+  const [newPassword, setNewPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [passwordChecks, setPasswordChecks] = useState<{
+    length: boolean;
+    lower: boolean;
+    number: boolean;
+    special: boolean;
+  }>({ length: false, lower: false, number: false, special: false });
+  const [passwordScore, setPasswordScore] = useState<number>(0);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
   const [email, setemail] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [emailTouched, setEmailTouched] = useState<boolean>(false);
   const [otpCountdown, setOtpCountdown] = useState<number>(0);
+  const [isCorrenctOtp, setIsCorrectOtp] = useState<boolean>(false);
+  const [isResetSuccess, setIsResetSuccess] = useState<boolean>(false);
   const otpTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -58,6 +76,18 @@ export default function Login() {
     setEmailTouched(false);
   }
 
+  function evaluatePassword(pw: string) {
+    const checks = {
+      length: pw.length >= 8,
+      lower: /[a-z]/.test(pw),
+      number: /[0-9]/.test(pw),
+      special: /[!@#$%^&*(),.?":{}|<>]/.test(pw),
+    };
+    setPasswordChecks(checks);
+    const score = Object.values(checks).filter(Boolean).length; // 0..4
+    setPasswordScore(score);
+  }
+
   function handleResend() {
     // todo: trigger resend logic (API call) here if needed
     setOtpCountdown(60);
@@ -67,6 +97,9 @@ export default function Login() {
     setIsLogin(false);
     setIsForgetPassword(true);
     setIsOtpScreen(false);
+    setIsNewPasswordScreen(false);
+    setIsResetSuccess(false);
+    setIsRegister(false);
     clearEmailState();
   }
 
@@ -74,6 +107,9 @@ export default function Login() {
     setIsLogin(true);
     setIsForgetPassword(false);
     setIsOtpScreen(false);
+    setIsNewPasswordScreen(false);
+    setIsResetSuccess(false);
+    setIsRegister(false);
     clearEmailState();
   }
 
@@ -81,6 +117,9 @@ export default function Login() {
     setIsLogin(false);
     setIsForgetPassword(false);
     setIsOtpScreen(true);
+    setIsNewPasswordScreen(false);
+    setIsResetSuccess(false);
+    setIsRegister(false);
     clearEmailState();
     setOtpCountdown(60);
   }
@@ -90,6 +129,26 @@ export default function Login() {
     setIsForgetPassword(false);
     setIsOtpScreen(false);
     setIsNewPasswordScreen(true);
+    setIsResetSuccess(false);
+    setIsRegister(false);
+  }
+
+  function goToResetSuccess() {
+    setIsLogin(false);
+    setIsForgetPassword(false);
+    setIsOtpScreen(false);
+    setIsNewPasswordScreen(false);
+    setIsRegister(false);
+    setIsResetSuccess(true);
+  }
+
+  function goToRegister() {
+    setIsLogin(false);
+    setIsForgetPassword(false);
+    setIsOtpScreen(false);
+    setIsNewPasswordScreen(false);
+    setIsResetSuccess(false);
+    setIsRegister(true);
   }
 
   return (
@@ -179,6 +238,9 @@ export default function Login() {
                 </div>
                 <div className="flex flex-col items-center justify-center w-full">
                   <button
+                    onClick={() => {
+                      router.push("/auth/StudentDashboard");
+                    }}
                     type="submit"
                     className="px-5 bg-blue-600 text-white py-3 rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105"
                   >
@@ -189,9 +251,12 @@ export default function Login() {
                   <span className="text-gray-500">
                     Don&apos;t have an account?{" "}
                   </span>
-                  <a href="/signup" className="text-blue-600 hover:underline">
+                  <span
+                    onClick={goToRegister}
+                    className="text-blue-600 hover:underline"
+                  >
                     Sign up
-                  </a>
+                  </span>
                 </div>
               </div>
             </>
@@ -283,6 +348,14 @@ export default function Login() {
                         />
                       ))}
                     </div>
+                    {isCorrenctOtp && (
+                      <p className="text-red-600 text-sm">
+                        <div className="rounded-full border border-red-500 inline-flex items-center justify-center mr-1">
+                          <ExclamationMarkIcon size={10} className="inline" />
+                        </div>
+                        Invalid OTP, Please enter correct OTP
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="text-center">
@@ -339,7 +412,7 @@ export default function Login() {
               </div>
             </>
           )}
-          {/* New password  screen content */}
+          {/* New password screen content */}
           {isNewPasswordScreen && (
             <>
               <p className="font-semibold mt-5">New password</p>
@@ -348,7 +421,7 @@ export default function Login() {
               </p>
               <div className="mt-10 w-full md:px-15">
                 <div>
-                  <label htmlFor="password">
+                  <label htmlFor="new-password">
                     New Password<span className="text-red-600">*</span>
                   </label>
                   <div className="relative">
@@ -358,15 +431,20 @@ export default function Login() {
                     />
                     <input
                       type="password"
-                      id="password"
-                      className="w-full border border-gray-300 rounded-md pl-10 p-3 mt-1 mb-4 
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      id="new-password"
+                      value={newPassword}
+                      onChange={(e) => {
+                        const v = e.target.value;
+                        setNewPassword(v);
+                        evaluatePassword(v);
+                      }}
+                      className="w-full border border-gray-300 rounded-md pl-10 p-3 mt-1 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Enter new password"
                     />
                   </div>
                 </div>
                 <div>
-                  <label htmlFor="password">
+                  <label htmlFor="confirm-new-password">
                     Confirm Password<span className="text-red-600">*</span>
                   </label>
                   <div className="relative">
@@ -376,17 +454,76 @@ export default function Login() {
                     />
                     <input
                       type="password"
-                      id="password"
-                      className="w-full border border-gray-300 rounded-md pl-10 p-3 mt-1 mb-4 
-                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      id="confirm-new-password"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      className="w-full border border-gray-300 rounded-md pl-10 p-3 mt-1 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                       placeholder="Confirm new password"
                     />
+                  </div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="text-sm text-gray-600">
+                      Password strength
+                    </div>
+                    <div className="w-1/5 h-2 bg-gray-200 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full transition-all duration-300 ${passwordScore <= 1 ? "bg-red-400" : passwordScore === 2 ? "bg-yellow-400" : "bg-green-400"}`}
+                        style={{ width: `${(passwordScore / 4) * 100}%` }}
+                      />
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      {passwordScore <= 1 && "Weak"}
+                      {passwordScore === 2 && "Medium"}
+                      {passwordScore >= 3 && "Strong"}
+                    </div>
+                  </div>
+                  <div className="mb-4 text-sm text-gray-600">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`${passwordChecks.length ? "text-green-500" : "text-gray-400"}`}
+                      >
+                        {passwordChecks.length ? "✓" : "○"}
+                      </span>
+                      <span>Minimum 8 characters</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`${passwordChecks.lower ? "text-green-500" : "text-gray-400"}`}
+                      >
+                        {passwordChecks.lower ? "✓" : "○"}
+                      </span>
+                      <span>1 lower case character</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`${passwordChecks.number ? "text-green-500" : "text-gray-400"}`}
+                      >
+                        {passwordChecks.number ? "✓" : "○"}
+                      </span>
+                      <span>1 number</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`${passwordChecks.special ? "text-green-500" : "text-gray-400"}`}
+                      >
+                        {passwordChecks.special ? "✓" : "○"}
+                      </span>
+                      <span>1 special character</span>
+                    </div>
                   </div>
                 </div>
                 <div className="flex flex-col items-center justify-center w-full">
                   <button
-                    type="submit"
-                    className="px-5 bg-blue-600 text-white py-3 rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105"
+                    type="button"
+                    onClick={goToResetSuccess}
+                    disabled={
+                      !(
+                        passwordScore >= 2 &&
+                        newPassword !== "" &&
+                        newPassword === confirmPassword
+                      )
+                    }
+                    className={`px-5 bg-blue-600 text-white py-3 rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 ${!(passwordScore >= 2 && newPassword !== "" && newPassword === confirmPassword) ? "opacity-50 cursor-not-allowed hover:shadow-none" : "hover:scale-105"}`}
                   >
                     Reset password
                   </button>
@@ -394,6 +531,97 @@ export default function Login() {
               </div>
             </>
           )}
+          {/* password reset success screen */}
+          {isResetSuccess && (
+            <>
+              <p className="font-semibold mt-5">Password reset successful!</p>
+              <p className="text-gray-600 text-sm">
+                Your password is successfully reset, you have to login again for
+                the security reason
+              </p>
+              <div className="mt-10 w-full md:px-15">
+                <div className="flex flex-col items-center justify-center w-full">
+                  <button
+                    type="button"
+                    onClick={goToLogin}
+                    className={`px-5 bg-blue-600 text-white py-3 rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50`}
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
+          {/* Register screen content */}
+          {isRegister && (
+            <>
+              <p className="font-semibold mt-5 text-center">
+                Before we start, select your Role
+              </p>
+              <div className="flex mt-10 w-auto md:w-4/5 justify-evenly">
+                <div
+                  className="relative cursor-pointer hover:scale-105 transition duration-300 text-center mr-5"
+                  onClick={() => router.push("/public/StudentReg")}
+                >
+                  <span className="text-white font-semibold absolute bottom-0 left-1/2 -translate-x-1/2 mb-3 py-1 rounded text-xl">
+                    I am Student
+                  </span>
+                  <Image
+                    src={studentRoleImg}
+                    alt="Student Role"
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+                <div
+                  className="relative cursor-pointer hover:scale-105 transition duration-300 text-center ml-5"
+                  onClick={() => router.push("/public/TutorReg")}
+                >
+                  <span className="text-white font-semibold absolute bottom-0 left-1/2 -translate-x-1/2 mb-3 py-1 rounded text-xl">
+                    I am Tutor
+                  </span>
+                  <Image
+                    src={tutorRoleImg}
+                    alt="Tutor Role"
+                    className="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-2 w-full md:px-15">
+                <div className="mt-5 text-center font-semibold">
+                  <span className="text-gray-500">
+                    Already have an account?{" "}
+                  </span>
+                  <span
+                    onClick={goToLogin}
+                    className="text-blue-600 hover:underline"
+                  >
+                    Sign in
+                  </span>
+                </div>
+              </div>
+            </>
+          )}
+          {/* For testing */}
+          {showPopup && (
+            <Popup
+              title="Warning"
+              description={`Your email is already used for another account in Top-tutor Global. Try to login or use another email to create a new account`}
+              primaryLabel="Try different email"
+              secondaryLabel="Login"
+              showSecondary={false}
+              onPrimary={() => {
+                setShowPopup(false);
+                goToForgetPassword();
+              }}
+              onSecondary={() => {
+                setShowPopup(false);
+                goToLogin();
+              }}
+              onClose={() => setShowPopup(false)}
+            />
+          )}
+          {/* ----------- */}
         </div>
       </div>
     </div>
