@@ -7,10 +7,34 @@ import step2Img from "../../public/images/landing/how_it_works_confirm.webp";
 import step3Img from "../../public/images/landing/how_it_works_have_fun.webp";
 import step4Img from "../../public/images/landing/how_it_works_assignment_done.webp";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function About() {
+  const router = useRouter();
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const [isMobile, setIsMobile] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState(
+    `url('${basePath}/images/landing/about-bottom-desk.jpg')`,
+  );
+
+  useEffect(() => {
+    const updateBackgroundImage = () => {
+      if (window.innerWidth < 768) {
+        setBackgroundImage(
+          `url('${basePath}/images/landing/about-bottom-mobile.jpg')`,
+        );
+      } else {
+        setBackgroundImage(
+          `url('${basePath}/images/landing/about-bottom-desk.jpg')`,
+        );
+      }
+    };
+
+    updateBackgroundImage();
+    window.addEventListener("resize", updateBackgroundImage);
+    return () => window.removeEventListener("resize", updateBackgroundImage);
+  }, [basePath]);
+
   const steps = [
     {
       id: 1,
@@ -174,7 +198,7 @@ export default function About() {
         <div
           className="flex px-6 flex-col bg-cover bg-center bg-no-repeat justify-center items-center w-full h-[500px] md:h-[400px] rounded-4xl"
           style={{
-            backgroundImage: `url('${basePath}/images/landing/${isMobile ? "about-bottom-mobile.jpg" : "about-bottom-desk.jpg"}')`,
+            backgroundImage: backgroundImage,
           }}
         >
           <h2
@@ -191,12 +215,20 @@ export default function About() {
           </p>
           <div className="text-white flex justify-center items-center flex-col md:flex-row gap-4 relative z-10">
             <div className="w-fit">
-              <button className="mt-5 px-6 py-2 mb-5 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 w-fit">
+              <button
+                onClick={() => {
+                  router.push("/public/Login");
+                }}
+                className="mt-5 px-6 py-2 mb-5 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105 w-fit"
+              >
                 Post a assignment
               </button>
             </div>
             <div className=" w-fit">
-              <button className="px-6 py-2.5 border-2 border-white font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300 w-fit">
+              <button
+                onClick={() => router.push("/contact")}
+                className="px-6 py-2.5 border-2 border-white font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300 w-fit"
+              >
                 Contact us
               </button>
             </div>

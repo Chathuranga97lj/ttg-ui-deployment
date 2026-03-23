@@ -14,7 +14,6 @@ import Popup from "../../components/shared/Popup";
 import { useRouter } from "next/router";
 
 export default function Login() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const router = useRouter();
   const [isLogin, setIsLogin] = useState<boolean>(true);
   const [isRegister, setIsRegister] = useState<boolean>(false);
@@ -151,6 +150,8 @@ export default function Login() {
     setIsResetSuccess(false);
     setIsRegister(true);
   }
+
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
     <div className="flex md:h-screen">

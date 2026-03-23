@@ -7,8 +7,11 @@ import {
   ClockIcon,
   CertificateIcon,
 } from "@phosphor-icons/react";
+import { useRouter } from "next/router";
 
 export default function GlobalPartner() {
+  const router = useRouter();
+
   const features = [
     {
       id: 1,
@@ -86,7 +89,10 @@ export default function GlobalPartner() {
             unstuck on difficult concepts, finish their toughest assignments,
             and study smarter.
           </p>
-          <button className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105">
+          <button
+            onClick={() => router.push("/public/Login")}
+            className="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105"
+          >
             Get my homework done
           </button>
         </div>

@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface FAQItem {
   id: string;
@@ -8,6 +10,7 @@ interface FAQItem {
 }
 
 export default function FAQ() {
+  const router = useRouter();
   const [openId, setOpenId] = useState<string | null>("001");
 
   const faqs: FAQItem[] = [
@@ -42,7 +45,7 @@ export default function FAQ() {
   };
 
   return (
-    <section className="w-full py-16 md:py-24 bg-white">
+    <section id="faqs" className="w-full py-16 md:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-5">
         <div className="flex flex-col md:flex-row md:gap-16">
           {/* Left Side - Header & Contact */}
@@ -79,7 +82,10 @@ export default function FAQ() {
                 questions about finding tutors, booking sessions, or using our
                 platform.
               </p>
-              <button className="px-6 py-2.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300">
+              <button
+                onClick={() => router.push("/contact")}
+                className="px-6 py-2.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300"
+              >
                 Contact us
               </button>
             </div>
@@ -167,7 +173,10 @@ export default function FAQ() {
               Our support team is available 24/7 to help you with any questions
               about finding tutors, booking sessions, or using our platform.
             </p>
-            <button className="px-6 py-2.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300">
+            <button
+              onClick={() => router.push("/contact")}
+              className="px-6 py-2.5 border-2 border-gray-300 text-gray-700 font-medium rounded-lg hover:border-blue-500 hover:text-blue-600 transition-all duration-300"
+            >
               Contact us
             </button>
           </div>

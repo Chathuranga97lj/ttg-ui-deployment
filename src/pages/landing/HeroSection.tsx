@@ -1,33 +1,36 @@
 import { Globe, Users, ShieldCheck } from "@phosphor-icons/react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function HeroSection() {
+  const router = useRouter();
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-  const [isMobile, setIsMobile] = useState(true);
+  const [backgroundImage, setBackgroundImage] = useState(
+    `url('${basePath}/background/landing-cover.webp')`,
+  );
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+    const updateBackgroundImage = () => {
+      if (window.innerWidth < 768) {
+        setBackgroundImage(
+          `url('${basePath}/background/landing-cover-mobile.jpg')`,
+        );
+      } else {
+        setBackgroundImage(`url('${basePath}/background/landing-cover.webp')`);
+      }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const bgImage = isMobile
-    ? `${basePath}/background/landing-cover-mobile.jpg`
-    : `${basePath}/background/landing-cover.webp`;
+    updateBackgroundImage();
+    window.addEventListener("resize", updateBackgroundImage);
+    return () => window.removeEventListener("resize", updateBackgroundImage);
+  }, [basePath]);
 
   return (
     <section
       id="home"
       className="relative h-[80vh] md:h-screen w-full bg-cover bg-center bg-no-repeat flex flex-col justify-center z-0"
       style={{
-        backgroundImage: `url('${bgImage}')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundImage: backgroundImage,
       }}
     >
       {/* Overlay for better text readability */}
@@ -60,7 +63,10 @@ export default function HeroSection() {
               solution. You go have fun, we&apos;ll handle the hard stuff
             </p>
           </div>
-          <button className="mt-5 px-6 py-2 mb-5 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105">
+          <button
+            onClick={() => router.push("/public/Login")}
+            className="mt-5 px-6 py-2 mb-5 bg-blue-600 hover:bg-blue-700 text-white button-small-text md:button-large-text rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:scale-105"
+          >
             Post a assignment
           </button>
         </div>

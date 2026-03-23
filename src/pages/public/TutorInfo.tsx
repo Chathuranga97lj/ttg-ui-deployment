@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "../../../public/images/logo/main-logo.webp";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   UserIcon,
   MapPinIcon,
@@ -18,7 +18,6 @@ import { education } from "@/enum/education";
 import { TUTORING_AREAS } from "@/enum/tutoring_areas";
 
 export default function TutorInfo() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -57,6 +56,8 @@ export default function TutorInfo() {
     const area = TUTORING_AREAS.find((a) => a.name === mainAreaName);
     return area ? area.subjects : [];
   }
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
   return (
     <div className="flex">
       <div

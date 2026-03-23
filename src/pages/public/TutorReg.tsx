@@ -13,7 +13,6 @@ import {
 } from "@phosphor-icons/react";
 
 export default function TutorReg() {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const router = useRouter();
   const [isRegScreen, setIsRegScreen] = useState(true);
   const [isOtpScreen, setIsOtpScreen] = useState(false);
@@ -104,6 +103,8 @@ export default function TutorReg() {
     setIsOtpScreen(false);
     setIsAccountScreen(true);
   }
+
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
   return (
     <div className={`flex ${isAccountScreen ? "md:h-auto" : "md:h-screen"}`}>
