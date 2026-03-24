@@ -103,13 +103,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {resources.map((link) => (
                 <li key={link.name}>
-                  <a
+                  <Link
                     href={link.href}
                     className="caption-text md:p-regular-text text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <span className="w-0 h-0.5 bg-blue-500 group-hover:w-2 transition-all duration-300"></span>
                     {link.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
