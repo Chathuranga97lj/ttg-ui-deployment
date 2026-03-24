@@ -152,7 +152,7 @@ export default function TermsOfService() {
               usage of our platform, please contact our support team.
             </p>
             <a
-              href="mailto:toptutorsglobal@gmail.com"
+              href="mailto:support@toptutorsglobal.com"
               className="inline-block px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors duration-300"
             >
               Get in Touch

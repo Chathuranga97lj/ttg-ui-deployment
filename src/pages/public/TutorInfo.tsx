@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import logo from "../../../public/images/logo/main-logo.webp";
 import { useState } from "react";
 import {
@@ -16,13 +17,14 @@ import { useRouter } from "next/router";
 import { countries } from "@/enum/country";
 import { education } from "@/enum/education";
 import { TUTORING_AREAS } from "@/enum/tutoring_areas";
+import { currentStatus } from "@/enum/current_status";
 
 export default function TutorInfo() {
   const router = useRouter();
   const [step, setStep] = useState(1);
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedHigherEducation, setSelectedHigherEducation] = useState("");
-  const [selectedEducation, setSelectedEducation] = useState("");
+  const [selectedCurrentStatus, setSelectedCurrentStatus] = useState("");
   const [selectedMainArea1, setSelectedMainArea1] = useState("");
   const [selectedSubject1, setSelectedSubject1] = useState("");
   const [selectedMainArea2, setSelectedMainArea2] = useState("");
@@ -333,35 +335,19 @@ export default function TutorInfo() {
                 </div>
                 <div>
                   <label htmlFor="highestEducation">
-                    Name of education qualification
-                    <span className="text-red-600">*</span>
+                    Name of the degree or education qualification (Optional)
                   </label>
                   <div className="relative">
                     <CertificateIcon
                       size={20}
                       className="absolute left-3 top-7 -translate-y-1/2 text-gray-400"
                     />
-                    <select
-                      id="highestEducation"
-                      value={selectedEducation}
-                      onChange={(e) => setSelectedEducation(e.target.value)}
-                      className={`w-full border border-gray-300 rounded-md pl-10 pr-10 p-3 mt-1 mb-4 appearance-none 
-                         focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                           selectedEducation ? "text-black" : "text-gray-400"
-                         }`}
-                    >
-                      <option value="" disabled>
-                        Enter name of education qualification
-                      </option>
-                      {education.map((edu) => (
-                        <option key={edu} value={edu}>
-                          {edu}
-                        </option>
-                      ))}
-                    </select>
-                    <CaretDownIcon
-                      size={18}
-                      className="absolute right-3 top-2/5 -translate-y-1/2 text-gray-400 pointer-events-none"
+                    <input
+                      type="text"
+                      id="university"
+                      className="w-full border border-gray-300 rounded-md pl-10 p-3 mt-1 mb-4 
+                         focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Enter name of education qualification"
                     />
                   </div>
                 </div>
@@ -669,8 +655,9 @@ export default function TutorInfo() {
                   </div>
                 </div>
                 <div className="pt-5">
-                  <label htmlFor="country">
-                    Country<span className="text-red-600">*</span>
+                  <label htmlFor="status">
+                    Current status about you
+                    <span className="text-red-600">*</span>
                   </label>
                   <div className="relative">
                     <UserCirclePlusIcon
@@ -678,20 +665,22 @@ export default function TutorInfo() {
                       className="absolute left-3 top-7 -translate-y-1/2 text-gray-400"
                     />
                     <select
-                      id="country"
-                      value={selectedCountry}
-                      onChange={(e) => setSelectedCountry(e.target.value)}
+                      id="status"
+                      value={selectedCurrentStatus}
+                      onChange={(e) => setSelectedCurrentStatus(e.target.value)}
                       className={`w-full border border-gray-300 rounded-md pl-10 pr-10 p-3 mt-1 mb-4 appearance-none 
                          focus:outline-none focus:ring-2 focus:ring-blue-500 ${
-                           selectedCountry ? "text-black" : "text-gray-400"
+                           selectedCurrentStatus
+                             ? "text-black"
+                             : "text-gray-400"
                          }`}
                     >
                       <option value="" disabled>
                         Current status about you
                       </option>
-                      {countries.map((country) => (
-                        <option key={country} value={country}>
-                          {country}
+                      {currentStatus.map((status) => (
+                        <option key={status} value={status}>
+                          {status}
                         </option>
                       ))}
                     </select>
@@ -896,7 +885,7 @@ export default function TutorInfo() {
                   </div>
                 </div>
               </div>
-              <div className="mt-10 flex w-full md:px-15 items-start mb-10">
+              <div className="mt-10 flex w-full md:px-15 items-start">
                 <input
                   type="checkbox"
                   id="confirm"
@@ -905,6 +894,37 @@ export default function TutorInfo() {
                 <label htmlFor="confirm" className="ml-2 text-gray-600">
                   I confirm that all the information provided is accurate and
                   truthful to the best of my knowledge.
+                </label>
+              </div>
+              <div className="flex w-full md:px-15 items-start mb-10 mt-2">
+                <input
+                  type="checkbox"
+                  id="confirm"
+                  className="text-blue-600 focus:ring-blue-500 mt-1.5"
+                />
+                <label htmlFor="confirm" className="ml-2 text-gray-600">
+                  I have read and agree to the{" "}
+                  <Link
+                    href="/public/PrivacyPolicy"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Privacy Policy
+                  </Link>
+                  ,{" "}
+                  <Link
+                    href="/public/RefundPolicy"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Refund Policy
+                  </Link>
+                  , and{" "}
+                  <Link
+                    href="/public/TermsOfService"
+                    className="text-blue-600 hover:underline"
+                  >
+                    Terms & Conditions
+                  </Link>
+                  .
                 </label>
               </div>
               <div className="flex justify-between w-full p-5">
@@ -1015,7 +1035,7 @@ export default function TutorInfo() {
                   type="submit"
                   className="px-5 bg-blue-600 text-white py-3 rounded-lg transition-all duration-300 shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50"
                 >
-                  Go home
+                  Tutor Dashboard
                 </button>
               </div>
             </>

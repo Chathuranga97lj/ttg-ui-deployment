@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { timeZones } from "../enum/timezone";
 
 interface PostAssessmentProps {
   onClose?: () => void;
@@ -11,7 +12,8 @@ export default function PostAssessment({ onClose }: PostAssessmentProps) {
     submissionDate: "",
     submissionTime: "",
     timeZone: "",
-    remainingTime: "",
+    remainingDays: "",
+    remainingHours: "",
     whatsappCountryCode: "+92",
     whatsappPhone: "",
     budget: "",
@@ -164,29 +166,53 @@ export default function PostAssessment({ onClose }: PostAssessmentProps) {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Time zone
                 </label>
-                <input
-                  type="text"
+                <select
                   name="timeZone"
                   value={formData.timeZone}
                   onChange={handleInputChange}
-                  placeholder="Enter assignment timezone time zone"
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                />
+                  required
+                >
+                  <option value="">Select a time zone</option>
+                  {timeZones.map((tz) => (
+                    <option key={tz} value={tz}>
+                      {tz}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Remaining Time (Optional) */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Remaining time(optional)
-                </label>
-                <input
-                  type="text"
-                  name="remainingTime"
-                  value={formData.remainingTime}
-                  onChange={handleInputChange}
-                  placeholder="Enter assignment remaining time"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Remaining days (optional)
+                  </label>
+                  <input
+                    type="number"
+                    name="remainingDays"
+                    value={formData.remainingDays}
+                    onChange={handleInputChange}
+                    placeholder="Enter days"
+                    min="0"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Remaining hours (optional)
+                  </label>
+                  <input
+                    type="number"
+                    name="remainingHours"
+                    value={formData.remainingHours}
+                    onChange={handleInputChange}
+                    placeholder="Enter hours"
+                    min="0"
+                    max="23"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+                  />
+                </div>
               </div>
             </div>
           </div>

@@ -448,13 +448,14 @@ export default function Settings() {
                             <div className="flex flex-col md:flex-row gap-8">
                               {/* Photo Section */}
                               <div className="shrink-0">
-                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-3xl md:text-5xl font-semibold overflow-hidden">
+                                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-3xl md:text-5xl font-semibold overflow-hidden">
                                   {profileData.profileImage ? (
                                     <Image
                                       src={profileData.profileImage}
                                       alt="Profile"
-                                      fill
-                                      className="object-cover"
+                                      width={160}
+                                      height={160}
+                                      className="object-cover w-full h-full"
                                     />
                                   ) : (
                                     profileData.fullName
@@ -542,13 +543,14 @@ export default function Settings() {
                               </div>
                               <div className="flex items-center gap-6">
                                 {/* Photo Display */}
-                                <div className="w-20 h-20 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xl font-semibold overflow-hidden shrink-0">
+                                <div className="relative w-20 h-20 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xl font-semibold overflow-hidden shrink-0">
                                   {editData.profileImage ? (
                                     <Image
                                       src={editData.profileImage}
                                       alt="Profile"
-                                      fill
-                                      className="object-cover"
+                                      width={80}
+                                      height={80}
+                                      className="object-cover w-full h-full"
                                     />
                                   ) : (
                                     editData.fullName
@@ -715,13 +717,14 @@ export default function Settings() {
                             <div className="flex flex-col md:flex-row gap-8">
                               {/* Photo Section */}
                               <div className="shrink-0">
-                                <div className="w-32 h-32 md:w-40 md:h-40 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-3xl md:text-5xl font-semibold overflow-hidden">
+                                <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-3xl md:text-5xl font-semibold overflow-hidden">
                                   {profileData.profileImage ? (
                                     <Image
                                       src={profileData.profileImage}
                                       alt="Profile"
-                                      fill
-                                      className="object-cover"
+                                      width={160}
+                                      height={160}
+                                      className="object-cover w-full h-full"
                                     />
                                   ) : (
                                     profileData.fullName
@@ -856,13 +859,14 @@ export default function Settings() {
                               </div>
                               <div className="flex items-center gap-6">
                                 {/* Photo Display */}
-                                <div className="w-20 h-20 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xl font-semibold overflow-hidden shrink-0">
+                                <div className="relative w-20 h-20 rounded-full bg-linear-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white text-xl font-semibold overflow-hidden shrink-0">
                                   {editData.profileImage ? (
                                     <Image
                                       src={editData.profileImage}
                                       alt="Profile"
-                                      fill
-                                      className="object-cover"
+                                      width={80}
+                                      height={80}
+                                      className="object-cover w-full h-full"
                                     />
                                   ) : (
                                     editData.fullName

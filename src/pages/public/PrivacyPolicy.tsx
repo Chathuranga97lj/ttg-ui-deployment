@@ -58,7 +58,7 @@ export default function PrivacyPolicy() {
       id: 10,
       title: "Data Retention and Deletion",
       content:
-        "You may review, update, or delete your personal information by logging into your account. If you wish to delete your account, you can contact us at toptutorsglobal@gmail.com, and we will process your request to remove your account and associated data.",
+        "You may review, update, or delete your personal information by logging into your account. If you wish to delete your account, you can contact us at support@toptutorsglobal.com, and we will process your request to remove your account and associated data.",
     },
     {
       id: 11,
@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
       id: 12,
       title: "Questions and Contact Information",
       content:
-        "If you have any questions about this Privacy Policy, feel free to contact us at toptutorsglobal@gmail.com.",
+        "If you have any questions about this Privacy Policy, feel free to contact us at support@toptutorsglobal.com.",
     },
     {
       id: 13,
@@ -158,7 +158,7 @@ export default function PrivacyPolicy() {
               please don&apos;t hesitate to reach out to us.
             </p>
             <a
-              href="mailto:toptutorsglobal@gmail.com"
+              href="mailto:support@toptutorsglobal.com"
               className="inline-block px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-300"
             >
               Contact Us

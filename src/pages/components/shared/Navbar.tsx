@@ -405,10 +405,10 @@ export default function Navbar() {
               <div className="mt-8 p-4 bg-blue-50 rounded-xl">
                 <p className="caption-text text-gray-600 mb-2">Need help?</p>
                 <a
-                  href="mailto:toptutorsglobal@gmail.com"
+                  href="mailto:support@toptutorsglobal.com"
                   className="caption-text text-blue-600 font-medium hover:underline"
                 >
-                  toptutorsglobal@gmail.com
+                  support@toptutorsglobal.com
                 </a>
               </div>
             </div>

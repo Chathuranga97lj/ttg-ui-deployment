@@ -103,13 +103,13 @@ export default function Footer() {
             <ul className="space-y-3">
               {resources.map((link) => (
                 <li key={link.name}>
-                  <Link
+                  <a
                     href={link.href}
                     className="caption-text md:p-regular-text text-gray-400 hover:text-blue-400 transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <span className="w-0 h-0.5 bg-blue-500 group-hover:w-2 transition-all duration-300"></span>
                     {link.name}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
@@ -123,7 +123,7 @@ export default function Footer() {
             <div className="space-y-4">
               {/* Email */}
               <a
-                href="mailto:hello@toptutors.com"
+                href="mailto:support@toptutorsglobal.com"
                 className="flex items-center gap-3 text-gray-400 hover:text-blue-400 transition-colors duration-300 group"
               >
                 <div className="w-10 h-10 rounded-lg bg-gray-800 group-hover:bg-blue-600/20 flex items-center justify-center transition-colors duration-300">
@@ -145,7 +145,7 @@ export default function Footer() {
                   style={{ wordBreak: "break-word" }}
                   className="caption-text md:p-regular-text"
                 >
-                  toptutorsglobal@gmail.com
+                  support@toptutorsglobal.com
                 </span>
               </a>
 

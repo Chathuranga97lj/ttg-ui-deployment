@@ -375,6 +375,23 @@ export default function StudentReg() {
                     />
                   </div>
                 </div>
+                <div>
+                  <label htmlFor="confirm-password">
+                    Confirm Password<span className="text-red-600">*</span>
+                  </label>
+                  <div className="relative">
+                    <LockIcon
+                      size={20}
+                      className="absolute left-3 top-7 -translate-y-1/2 text-gray-400"
+                    />
+                    <input
+                      type="password"
+                      id="new-password"
+                      className="w-full border border-gray-300 rounded-md pl-10 p-3 mt-1 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      placeholder="Enter new password"
+                    />
+                  </div>
+                </div>
                 {newPassword !== "" && (
                   <div>
                     <div className="flex items-center gap-3 mb-3">
