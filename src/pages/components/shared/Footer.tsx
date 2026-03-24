@@ -14,9 +14,9 @@ export default function Footer() {
 
   const resources = [
     { name: "FAQs", href: "/#faqs" },
-    { name: "Privacy Policy", href: "#" },
-    { name: "Terms of Service", href: "#" },
-    { name: "Refund Policy", href: "#" },
+    { name: "Privacy Policy", href: "/public/PrivacyPolicy" },
+    { name: "Terms of Service", href: "/public/TermsOfService" },
+    { name: "Refund Policy", href: "/public/RefundPolicy" },
   ];
 
   const socialLinks = [
