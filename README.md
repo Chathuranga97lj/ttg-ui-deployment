@@ -1,6 +1,6 @@
 # TTG Web
 
-> ⚠️ **FILL IN #1 — one-line description.** Replace this with a single sentence saying what the app is and who it's for. Example shape: "A responsive marketing site for _____, built as a statically exported Next.js app." Keep it under 20 words. Also paste this same line into the repo's **About** field on GitHub — it currently says "No description, website, or topics provided."
+Online Platform for Student and Tutors 
 
 **[▶ Live Demo](https://chathuranga97lj.github.io/ttg-ui-deployment/)**
 
@@ -11,9 +11,12 @@
 
 ---
 
-> ⚠️ **FILL IN #2 — screenshot.** This is the single highest-impact thing on the page. Take a screenshot of the live demo, drop the image into a `docs/` folder in the repo, and replace the line below. A README with a screenshot gets read; one without gets skipped.
+<img width="1895" height="881" alt="screen_shot_1" src="https://github.com/user-attachments/assets/039ae53d-6b87-45a5-bb4d-6b73379d5b73" />
+<img width="1082" height="772" alt="screen_shot_3" src="https://github.com/user-attachments/assets/29f2a62f-aa0b-47ad-88af-b6d23fb2fb3d" />
+<img width="1892" height="870" alt="screen_shot_2" src="https://github.com/user-attachments/assets/13f53381-724c-4e30-85e7-3a89334247dd" />
+<img width="1887" height="800" alt="screen_shot_4" src="https://github.com/user-attachments/assets/9e8e231e-3563-4ea8-9d84-3c08b92693c9" />
+<img width="1080" height="776" alt="screen_shot_5" src="https://github.com/user-attachments/assets/9fa2d4b5-dae8-4d4a-b6f3-84b06a0d7caf" />
 
-![TTG Web screenshot](docs/screenshot.png)
 
 ---
 
