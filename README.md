@@ -1,6 +1,6 @@
 # TTG Web
 
-Online Platform for Student and Tutors 
+Frontend for TTG, a tutoring platform where students post assessments and tutors pick them up — built with Next.js 16 and statically exported to GitHub Pages.
 
 **[▶ Live Demo](https://chathuranga97lj.github.io/ttg-ui-deployment/)**
 
@@ -22,7 +22,7 @@ Online Platform for Student and Tutors
 
 ## About
 
-> ⚠️ **FILL IN #3 — two or three sentences.** Say what problem this solves, who it was built for, and one thing that was non-obvious to build. If this was client or freelance work, say so — real-world work counts for far more than a tutorial project. If the client's name is confidential, "built for a client in the ___ industry" is enough.
+TTG is a platform that connects students with tutors around assessment work. Students create a profile, submit assessments, and track them through to completion; tutors browse open submissions, pick up the ones matching their subjects, and manage their workload from a single dashboard. Both sides share one account system with role-specific views.
 
 ## Tech Stack
 
